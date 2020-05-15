@@ -50,6 +50,32 @@ public class Database
         }
 	}
 	
+	public void nounsFromFile() {
+		File file = new File("Nouns.txt");
+		
+		try (Scanner fileInput = new Scanner(file)) {
+            while(fileInput.hasNextLine()) {
+                String[] line = fileInput.nextLine().split(" ");
+                String english = line[0];
+                String spanish = line[1];
+                String gender = line[2];
+                if (gender.equals("MASCULINE")) 
+                {
+                	nouns.add(new Noun(english, spanish, Gender.MASCULINE));
+                }
+                else if (gender.equals("FEMININE")) 
+                {
+                	nouns.add(new Noun(english, spanish, Gender.FEMININE));
+                }
+                else {
+                	nouns.add(new Noun(english, spanish, Gender.BOTH));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: The file was not found!");
+        }
+	}
+	
 	public void adjectivesToFile() 
 	{
 
@@ -73,6 +99,22 @@ public class Database
         }
 	}
 	
+	public void adjectivesFromFile() {
+		File file = new File("Adjectives.txt");
+		
+		try (Scanner fileInput = new Scanner(file)) {
+            while(fileInput.hasNextLine()) {
+                String[] line = fileInput.nextLine().split(" ");
+                String english = line[0];
+                String spanish = line[1];
+                adjectives.add(new Adjective(english, spanish));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: The file was not found!");
+        }
+		
+	}
+	
 	public void allWordsToFile() 
 	{
 		File file = new File("AllWords.txt");
@@ -94,6 +136,20 @@ public class Database
             System.out.println("ERROR: Problem outputting to the file");
         }
 		
+	}
+	
+	public void allWordsFromFile() {
+		File file = new File("AllWords.txt");
+		
+		try (Scanner fileInput = new Scanner(file)) {
+            while(fileInput.hasNextLine()) {
+                String english = fileInput.nextLine();
+                String spanish = fileInput.nextLine();
+                allWords.add(new Word(english, spanish));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: The file was not found!");
+        }
 	}
 	
 	public void verbsToFile() 
@@ -151,6 +207,44 @@ public class Database
         }
 	}
 	
+	public void verbsFromFile() {
+		
+		File file = new File("Verbs.txt");
+		String english, spanish;
+		String[] line;
+		ArrayList<String> present, preterit, imperfect, future;
+		
+		try (Scanner fileInput = new Scanner(file)) {
+            while(fileInput.hasNextLine()) {
+                english = fileInput.nextLine();
+                spanish = fileInput.nextLine();
+                line = fileInput.nextLine().split(" ");
+                present = new ArrayList<String>();
+                for (int i = 0; i < 5; i++) {
+                	present.add(line[i]);
+                }
+                line = fileInput.nextLine().split(" ");
+                preterit = new ArrayList<String>();
+                for (int i = 0; i < 5; i++) {
+                	preterit.add(line[i]);
+                }
+                line = fileInput.nextLine().split(" ");
+                imperfect = new ArrayList<String>();
+                for (int i = 0; i < 5; i++) {
+                	imperfect.add(line[i]);
+                }
+                line = fileInput.nextLine().split(" ");
+                future = new ArrayList<String>();
+                for (int i = 0; i < 5; i++) {
+                	future.add(line[i]);
+                }
+                verbs.add(new Verb(english, spanish, present, preterit, imperfect, future));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: The file was not found!");
+        }
+	}
+	
 	public void glossariesToFile() 
 	{
 
@@ -194,6 +288,43 @@ public class Database
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: Problem outputting to the file");
         }
+	}
+	
+	public void glossariesFromFile() 
+	{
+		File file = new File("Glossaries.txt");
+		ArrayList<Word> words = new ArrayList<Word>();
+		String line;
+		String title = "";
+		String english;
+		String spanish;
+		int count = 0;
+		
+		try (Scanner fileInput = new Scanner(file)) {
+            while(fileInput.hasNextLine()) {
+                line = fileInput.nextLine();
+                if (count == 0) {
+                	count++;
+                	title = fileInput.nextLine();
+                }
+                else if (line.equals("Glossary")) {
+                	glossaries.add(new Glossary(title, words));
+                	words = new ArrayList<Word>();
+                	title = fileInput.nextLine();
+                }
+                else {
+                	english = line;
+                	spanish = fileInput.nextLine();
+                	words.add(new Word(english, spanish));
+                }
+                
+            }
+            
+            glossaries.add(new Glossary(title, words));
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: The file was not found!");
+        }
+		
 	}
 	
 	
@@ -291,11 +422,10 @@ public class Database
 		if (sorted) 
 		{
 			Collections.sort(this.allWords);     
-			System.out.println(this.allWords);
 		}
-		else 
-		{
-			System.out.println(this.allWords);
+		
+		for (int i = 0; i < allWords.size(); i++) {
+			allWords.get(i).display();
 		}
 	}
 	
@@ -310,11 +440,11 @@ public class Database
 		if (sorted) 
 		{
 			Collections.sort(this.verbs);     
-			System.out.println(this.verbs);
 		}
-		else 
+		
+		for (int i = 0; i < verbs.size(); i++) 
 		{
-			System.out.println(this.verbs);
+			verbs.get(i).display();
 		}
 	}
 	
@@ -330,11 +460,10 @@ public class Database
 		if (sorted) 
 		{
 			Collections.sort(this.nouns);     
-			System.out.println(this.nouns);
 		}
-		else 
-		{
-			System.out.println(this.nouns);
+		
+		for (int i = 0; i < this.nouns.size(); i++) {
+			this.nouns.get(i).display();
 		}
 	}
 	
@@ -349,11 +478,10 @@ public class Database
 		if (sorted) 
 		{
 			Collections.sort(this.adjectives);     
-			System.out.println(this.adjectives);
 		}
-		else 
-		{
-			System.out.println(this.adjectives);
+		
+		for (int i = 0; i < adjectives.size(); i++) {
+			adjectives.get(i).display();
 		}
 	}
 	
@@ -365,7 +493,9 @@ public class Database
 		System.out.println("#   Glossaries  #");
 		System.out.println("#################");
 	
-		System.out.println(this.glossaries);
+		for (int i = 0; i < glossaries.size(); i++) {
+			glossaries.get(i).display();
+		}
 	}
 
 }

@@ -32,5 +32,10 @@ public class Word  implements Comparable<Word>
 	{
 		return this.spanish.compareTo(word.getSpanish());
 	}
+	
+	@Override
+	public String toString() {
+		return this.getSpanish() + " --> " + this.getEnglish() + "\n";
+	}
 
 }
