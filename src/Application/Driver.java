@@ -47,6 +47,13 @@ public class Driver
 		// Example adjective
 		Word adjective = new Adjective("pretty", "bonita");
 		System.out.println(adjective);
+		
+		// Example glossary
+		Glossary glossary = new Glossary("Teresa");
+		glossary.addWord(noun);
+		glossary.addWord(word);
+		glossary.addWord(adjective);
+		System.out.println(glossary);
 	}
 
 }
