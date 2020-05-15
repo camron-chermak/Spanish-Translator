@@ -69,6 +69,13 @@ public class Driver
 		database.displayVerbs(true);
 		database.displayAdjectives(true);
 		database.displayGlossaries();
+		
+		// Example creating files
+		database.nounsToFile();
+		database.adjectivesToFile();
+		database.verbsToFile();
+		database.glossariesToFile();
+		database.allWordsToFile();
 	}
 
 }
