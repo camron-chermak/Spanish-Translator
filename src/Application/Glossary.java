@@ -14,6 +14,12 @@ public class Glossary
 		this.words = new ArrayList<Word>();
 	}
 	
+	public Glossary(String title, ArrayList<Word> words) 
+	{
+		this.title =  title;
+		this.words = words;
+	}
+	
 	public String getTitle() 
 	{
 		return this.title;
@@ -27,6 +33,14 @@ public class Glossary
 	public void addWord(Word word) 
 	{
 		this.words.add(word);
+	}
+	
+	public void display()
+	{
+		System.out.println("Glossary: " + this.title);
+		for (int i = 0; i < words.size(); i++) {
+			words.get(i).display();
+		}
 	}
 	
 	@Override

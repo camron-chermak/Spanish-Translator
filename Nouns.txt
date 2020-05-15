@@ -1,1 +1,2 @@
+cat gato MASCULINE
 dog perro MASCULINE
