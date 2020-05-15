@@ -72,11 +72,11 @@ public class Verb extends Word
 	@Override
 	public String toString() 
 	{
-		String retString = "Verb{" + this.getSpanish() + " --> " + this.getEnglish() + "}"; 
+		String retString = "\nVerb:\n" + this.getSpanish() + " --> " + this.getEnglish(); 
 		retString += "\nPresent --> " + this.present.toString();
 		retString += "\nPreterit --> " + this.preterit.toString();
 		retString += "\nImperfect --> " + this.imperfect.toString();
-		retString += "\nFuture --> " + this.future.toString();
+		retString += "\nFuture --> " + this.future.toString() + "\n"; 
 		return retString;	
 	}
 	

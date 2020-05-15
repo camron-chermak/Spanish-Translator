@@ -11,7 +11,7 @@ public class Adjective extends Word
 	@Override
 	public String toString() 
 	{
-		return "Adjective{" + this.getSpanish() + " --> " + this.getEnglish() + "}";
+		return "\nAdjective:\n" + this.getSpanish() + " --> " + this.getEnglish() + "\n";
 	}
 
 }

@@ -9,7 +9,7 @@ public class Driver
 	{
 		// Example Noun
 		Word noun = new Noun("dog", "perro", Gender.MASCULINE);
-		System.out.println(noun);
+		noun.display();
 		
 		// Example Verb
 		Word word = new Verb("to dance", "bailar");
@@ -42,11 +42,11 @@ public class Driver
 		future.add("bailaremos");
 		future.add("bailarán");
 		verb.setFuture(future);
-		System.out.println(verb);
+		((Word)verb).display();
 		
 		// Example adjective
 		Word adjective = new Adjective("pretty", "bonita");
-		System.out.println(adjective);
+		adjective.display();
 		
 		// Example glossary
 		Glossary glossary = new Glossary("Teresa");
@@ -54,6 +54,21 @@ public class Driver
 		glossary.addWord(word);
 		glossary.addWord(adjective);
 		System.out.println(glossary);
+		
+		// Example Database
+		Database database = new Database();
+		database.addWord(noun);
+		database.addWord(word);
+		database.addWord(adjective);
+		database.addVerb(verb);
+		database.addGlossary(glossary);
+		database.nounsFromWords();
+		database.adjectivesFromWords();
+		database.displayAllWords(true);
+		database.displayNouns(true);
+		database.displayVerbs(true);
+		database.displayAdjectives(true);
+		database.displayGlossaries();
 	}
 
 }
