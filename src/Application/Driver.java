@@ -42,7 +42,11 @@ public class Driver
 		future.add("bailaremos");
 		future.add("bailarán");
 		verb.setFuture(future);
-		System.out.println(verb.toString());
+		System.out.println(verb);
+		
+		// Example adjective
+		Word adjective = new Adjective("pretty", "bonita");
+		System.out.println(adjective);
 	}
 
 }
