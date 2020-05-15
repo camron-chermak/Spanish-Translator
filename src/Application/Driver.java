@@ -4,7 +4,8 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Hello World!");
+		Word noun = new Noun("dog", "perro", Gender.MASCULINE);
+		System.out.println(noun);
 
 	}
 
