@@ -3,6 +3,7 @@ package Application;
 public enum Gender {
 	
 	MASCULINE,
-	FEMININE;
+	FEMININE,
+	BOTH;
 
 }
