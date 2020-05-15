@@ -16,10 +16,11 @@ public class Noun extends Word
 		return this.gender;
 	}
 	
+	
 	@Override
 	public String toString() 
 	{
-		return "Noun{" + this.getSpanish() + " --> " + this.getEnglish() 
-					+ ", " + this.gender + "}"; 
+		return "\nNoun:\n" + this.getSpanish() + " --> " + this.getEnglish() 
+					+ "\n" + this.gender + "\n"; 
 	}
 }

@@ -1,6 +1,6 @@
 package Application;
 
-public class Word 
+public class Word  implements Comparable<Word>
 {
 	
 	private String spanish;
@@ -20,6 +20,17 @@ public class Word
 	public String getSpanish()  
 	{
 		return this.spanish;
+	}
+	
+	public void display() 
+	{
+		System.out.println(this.spanish + " --> " + this.english);
+	}
+	
+	@Override
+	public int compareTo(Word word) 
+	{
+		return this.spanish.compareTo(word.getSpanish());
 	}
 
 }
