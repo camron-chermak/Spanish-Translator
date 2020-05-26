@@ -25,6 +25,36 @@ public class Database
 		this.glossaries = new ArrayList<Glossary>();
 	}
 	
+	public String translateFromEnglish(String english) {
+		
+		String ret = "Sorry this word was not found";
+		
+		english = english.toLowerCase();
+		
+		for (int i = 0; i < allWords.size(); i++ ) {
+			if (allWords.get(i).getEnglish().equals(english)) {
+				return allWords.get(i).getSpanish();
+			}
+		}
+			
+		return ret;
+	}
+	
+	public String translateFromSpanish(String spanish) {
+		
+		String ret = "Lo siento este palabra no busco";
+		
+		spanish = spanish.toLowerCase();
+		
+		for (int i = 0; i < allWords.size(); i++ ) {
+			if (allWords.get(i).getSpanish().equals(spanish)) {
+				return allWords.get(i).getEnglish();
+			}
+		}
+			
+		return ret;
+	}
+	
 	public void nounsToFile() 
 	{
 		
@@ -484,6 +514,8 @@ public class Database
 			adjectives.get(i).display();
 		}
 	}
+	
+
 	
 	public void displayGlossaries() 
 	{
